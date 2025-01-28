@@ -36,3 +36,34 @@ The output should include:
 
 */
 
+const d = new Date("2019-07-18T16:34:21")
+
+let date = d.getDate()
+const month = d.toLocaleString("en-US", { month: "long" })
+const year = d.getFullYear()
+const time = d.toLocaleString("en-US", {
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hourCycle: "h12"
+}).replace(" ", "")
+
+if(date > 3 && date < 21) {
+  date += 'th'
+} else {
+  switch(date % 10) {
+    case 1:
+      date += 'st'
+      break
+    case 2:
+      date += 'nd'
+      break
+    case 3:
+      date += 'rd'
+      break
+    default:
+      date += 'th'
+  }
+}
+
+console.log(`${date} ${month}, ${year} ${time}`)
