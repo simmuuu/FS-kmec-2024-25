@@ -40,13 +40,13 @@ const countVowels = (str) => {
         else if (str[i] >= 'a' && str[i] <= 'z') count2++;
     }
 
-    // better code
-    // for(let char of str) {
-    //     if(/[a-zA-Z]/.test(char)) {
-    //         if(vowels.includes(char)) count1++;
-    //         else count2++;
-    //     }
-    // }
+    // better code | uses REGEX
+    for(let char of str) {
+        if(/[a-zA-Z]/.test(char)) {
+            if(vowels.includes(char)) count1++;
+            else count2++;
+        }
+    }
     
     return {
         count1, count2

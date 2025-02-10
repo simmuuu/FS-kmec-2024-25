@@ -1,0 +1,4 @@
+*.class
+**/node_modules
+**/pnpm-lock.yaml
+notdone.txt

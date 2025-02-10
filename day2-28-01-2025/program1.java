@@ -55,40 +55,39 @@ Sample Output-2:
 
 import java.util.*;
 
-class student {
-    int score;
+class Student {
     String name;
-    
-    student(String name, int score) {
+    int score;
+
+    Student(String name, int score) {
         this.name = name;
         this.score = score;
     }
-    
+
+    @Override
     public String toString() {
-        return "("+ name + ", " + score + ")";
+        return String.format("(%s, %d)", name, score);
     }
 }
 
 public class program1 {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        int size = sc.nextInt();
-        sc.nextLine();
-        PriorityQueue<student> pq = new PriorityQueue<>((a, b) -> {
+
+        PriorityQueue<Student> pq = new PriorityQueue<>((a, b) -> {
             if(a.score == b.score) {
                 return a.name.compareTo(b.name);
             }
-            
+
             return b.score - a.score;
         });
-        
-        for(int i = 0; i < size; i++) {
-            String name = sc.next();
-            int score = sc.nextInt();
-            pq.add(new student(name, score));
+
+        int n = sc.nextInt();
+
+        for(int i = 0; i < n; i++) {
+            pq.add(new Student(sc.next(), sc.nextInt()));
         }
-        
+
         while(!pq.isEmpty()) {
             System.out.println(pq.poll());
         }

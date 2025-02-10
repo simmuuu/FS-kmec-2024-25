@@ -57,3 +57,58 @@ Constraints:
 */
 
 
+import java.util.*;
+
+public class program1 {
+    public static int sol(int[] inp, int l, int r) {
+        int n = inp.length;
+        int minEnergy = Integer.MAX_VALUE;
+        
+        for(int windowSize = l; windowSize <= r; windowSize++) {
+            long prod = 1;
+            int zeros = 0;
+
+            // build and calc intial window
+            for(int i = 0; i < windowSize; i++) {
+                if(inp[i] == 0) zeros++;
+                else prod *= inp[i];
+            }
+
+            // check if min productfound
+            if(zeros == 0 && prod > 0) {
+                minEnergy = Math.min(minEnergy, (int)prod);
+            }
+
+            // implement sliding window approch
+            for(int i = windowSize; i < n; i++) {
+                if(inp[i - windowSize] == 0) zeros--;
+                else prod /= inp[i - windowSize];
+
+                if(inp[i] == 0) zeros++;
+                else prod *= inp[i];
+
+                if(zeros == 0 && prod > 0) {
+                    minEnergy = Math.min(minEnergy, (int)prod);
+                }
+            }
+        }
+
+        return minEnergy == Integer.MAX_VALUE ? -1 : minEnergy;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+
+        int[] inp = new int[n];
+
+        for(int i = 0; i < n; i++) inp[i] = sc.nextInt();
+
+        System.out.println(sol(inp, l, r));
+
+        sc.close();
+    }
+}

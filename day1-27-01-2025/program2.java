@@ -65,27 +65,23 @@ This requires 2 operations.
 
  */
 
- import java.util.*;
+import java.util.*;
 
 public class program2 {
     public static int sol(String inp, int k) {
         int leastOper = Integer.MAX_VALUE;
         int lenS = inp.length();
         
-        int R = 0, B = 0;
-        int l = 0;
+        int R = 0;
         
         for(int i = 0; i < lenS; i++) {
             if(inp.charAt(i) == 'R') R++;
-            else B++;
                 
             if(i < k - 1) continue;
             
             leastOper = Math.min(leastOper, R);
             
-            if(inp.charAt(l) == 'R') R--;
-            else B--;
-            l++;
+            if(inp.charAt(i - k + 1) == 'R') R--;
         }
         
         return leastOper;
@@ -98,5 +94,7 @@ public class program2 {
         String inp = a[0];
         int k = Integer.valueOf(a[1]);
         System.out.println(sol(inp, k));
+
+        sc.close();
     }
 }

@@ -97,66 +97,87 @@ Constraints:
 
 import java.util.*;
 
-class Help{
+class Help {
     int value;
     int score;
+    int freq;
 
-    public Help(int value, int score){
+    Help(int value, int score, int freq) {
         this.value = value;
         this.score = score;
+        this.freq = freq;
     }
 }
 
 public class program2 {
-    public static Integer helper(ArrayList<Integer> al, int f, int x) {
+    public static String sol(int[] inp, int n, int k, int x, int f) {
+        // hashmap for counting occurences
+        Map<Integer, Integer> m = new HashMap<>();
+        // array for storing priority scores
+        int[] pScores = new int[n - k + 1];
+
+        // adding first window into hashmap
+        for(int i = 0; i < k; i++) {
+            m.put(inp[i], m.getOrDefault(inp[i], 0) + 1);
+        }
+
+        // start calculating window
+            for(int i = 0; i <= n - k; i++) {
+                pScores[i] = calcPrioritySum(m, x, f);
+
+                if(i < n - k) {
+                    if(m.get(inp[i]) == 1) {
+                        m.remove(inp[i]);
+                    } else {
+                        m.put(inp[i], m.get(inp[i]) - 1);
+                    }
+
+                    m.put(inp[i + k], m.getOrDefault(inp[i + k], 0) + 1);
+                }
+        }
+
+        return Arrays.toString(pScores);
+    }
+
+    private static int calcPrioritySum(Map<Integer, Integer> m, int x, int f) {
         PriorityQueue<Help> pq = new PriorityQueue<>((a, b) -> {
-            if(a.score == b.score){
-                return b.value - a.value;
-            }
+            if(a.score == b.score) return b.value - a.value;
             return b.score - a.score;
         });
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        for(int i : al){
-            hm.put(i, hm.getOrDefault(i, 0)+1);
+
+        for(Map.Entry<Integer, Integer> entry: m.entrySet()) {
+            int value = entry.getKey();
+            int freq = entry.getValue();
+
+            int pScore = freq * (int)Math.pow(value, f);
+            pq.offer(new Help(value, pScore, freq));
         }
-        for(int i : hm.keySet()){
-            int score = (int) (hm.get(i) * (Math.pow(i, f)));
-            pq.offer(new Help(i, score));
-        }
+
         int sum = 0;
-        int j = 0;
-        while(j < x){
+        int count = 0;
+
+        while(!pq.isEmpty() && count < x) {
             Help h = pq.poll();
-            sum += (hm.get(h.value) * h.value);
-            j++;
+            sum += h.value * h.freq;
+            count++;
         }
+
         return sum;
     }
-    public static void main(String [] args){
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         int n = sc.nextInt();
         int k = sc.nextInt();
         int x = sc.nextInt();
         int f = sc.nextInt();
 
-        int [] a = new int[n];
-        for(int i = 0; i < n; i++){
-            a[i] = sc.nextInt();
-        }
-//      Sliding Window
-        ArrayList<Integer> res = new ArrayList<>();
-        ArrayList<Integer> al = new ArrayList<>();
-        int q = 0;
-        for(int i = 0; i < k; i++){
-            al.add(a[i]);
-            q++;
-        }
-        res.add(helper(al, f, x));
-        for(int end = q; end < n; end++){
-            al.remove(0);
-            al.add(a[end]);
-            res.add(helper(al,f, x));
-        }
-        System.out.println(res);
+        int[] inp = new int[n];
+        for(int i = 0; i < n; i++) inp[i] = sc.nextInt();
+
+        System.out.println(sol(inp, n, k, x, f));
+
+        sc.close();
     }
 }
