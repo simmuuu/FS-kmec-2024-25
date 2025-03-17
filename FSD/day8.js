@@ -36,7 +36,7 @@ app.get("/orders/:id", (req, res) => {
 });
 
 // POST create new order
-app.post("/orders", validateOrder, (req, res) => {
+app.post("/orders", (req, res) => {
     const { customerName, totalPrice } = req.body;
     
     const newOrder = {
@@ -74,10 +74,6 @@ app.delete("/orders/:id", (req, res) => {
 
     const initialLength = orders.length;
     orders = orders.filter(o => o.id !== id);
-
-    if (orders.length === initialLength) {
-        return res.status(404).send({ message: "Order not found" });
-    }
 
     res.status(200).send({ message: "Order deleted successfully" });
 });
