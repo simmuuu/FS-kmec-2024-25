@@ -1,4 +1,3 @@
-*.js
 *.java
 *.class
 *.txt
@@ -6,5 +5,7 @@
 **/package.json
 **/node_modules
 **/pnpm-lock.yaml
+**/venv
+**/__pycache__
 .obsidian
 
