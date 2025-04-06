@@ -31,3 +31,10 @@ Topics:
 - **Concept**: Scraping (Scrapy)
 
 [Day 14](./014-25-03-2025) • [Day 15](./015-26-03-2025) • [Day 16](./016-27-03-2025) • [Day 17](./017-28-03-2025)
+
+## Week 5 (April 2-4)
+
+**April 3**: [Grand Test](./Grand%20Tests/001-03-04-2025)
+
+Topics
+- **DSA**: Arrays, Strings
