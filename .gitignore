@@ -1,7 +1,7 @@
-*.java
+# *.java
 *.class
 *.txt
-*.pdf
+# *.pdf
 **/package.json
 **/node_modules
 **/pnpm-lock.yaml
