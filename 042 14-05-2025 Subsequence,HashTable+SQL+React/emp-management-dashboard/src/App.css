@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* AMOLED Dark Mode Colors */
+  --amoled-black: #000000;
+  --amoled-dark-gray: #121212;
+  --amoled-gray-900: #181818;
+  --amoled-gray-800: #282828;
+  --amoled-gray-700: #404040;
+  --amoled-gray-600: #606060;
+  --amoled-blue: #3898ff;
+  --amoled-blue-light: #61b0ff;
+  --amoled-blue-dark: #1e7fe0;
+
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-disabled: rgba(255, 255, 255, 0.38);
+
+  /* Subtle shadows for dark mode */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.26);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Animation */
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Geist/Inter font setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+body {
+  background-color: var(--amoled-black);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  margin: 0;
+}
+
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding-top: 60px; /* Fixed spacing for navbar */
+}
+
+/* Navbar styles - AMOLED dark theme */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Reduced height to remove spacing */
+  background-color: var(--amoled-black);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: var(--shadow-sm);
+  z-index: 1000;
+  border-bottom: 1px solid var(--amoled-gray-800);
+}
+
+.navbar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--amoled-blue);
+  letter-spacing: -0.02em;
+}
+
+.navbar-items {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  height: 60px;
+}
+
+.navbar-item {
+  padding: 0 16px;
+  margin: 0 2px;
+  cursor: pointer;
+  transition: var(--transition);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item:hover {
+  background-color: var(--amoled-gray-800);
+  color: var(--amoled-blue);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--amoled-gray-900);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--amoled-gray-800);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Button styles */
+button {
+  background-color: var(--amoled-blue);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  height: 40px;
+  min-width: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: var(--amoled-blue-light);
+}
+
+button:focus {
+  box-shadow: 0 0 0 3px rgba(56, 152, 255, 0.3);
+  outline: none;
+}
+
+/* Form styles - AMOLED dark */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--amoled-gray-700);
+  border-radius: 6px;
+  font-size: 16px;
+  transition: var(--transition);
+  margin-bottom: 8px;
+  height: 40px;
+  background-color: var(--amoled-gray-900);
+  color: var(--text-primary);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--amoled-blue);
+  box-shadow: 0 0 0 1px var(--amoled-blue);
+  outline: none;
+}
+
+textarea {
+  min-height: 80px;
+  padding-top: 8px;
+}
+
+label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 16px;
+}
+
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Typography - Clean, minimal style */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.875rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .container {
+    padding: 16px 12px;
+  }
+
+  .card {
+    padding: 16px;
+    margin: 12px 8px;
+  }
+
+  button {
+    height: 36px;
+  }
+}

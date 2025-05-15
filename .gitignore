@@ -8,5 +8,5 @@
 **/venv
 **/__pycache__
 .obsidian
-
+**/pnpm-workspace.yaml
 test/
