@@ -10,3 +10,4 @@
 .obsidian
 **/pnpm-workspace.yaml
 test/
+.vscode
